@@ -4,15 +4,23 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class AuthorNameFormatterUnitTest {
+    private val formatter = AuthorNameFormatter()
+
     @Test
     fun testSurnameShouldBeTheLastNamePartAndBeUppercaseAndCommaSeparated() {
-        val formatter = AuthorNameFormatter()
         val formattedName = formatter.formatted("Ricardo Carvalho")
         assertEquals("CARVALHO, Ricardo", formattedName)
     }
 
+    @Test
+    fun testEmptyInput() {
+        val formattedName = formatter.formatted("")
+        assertEquals("", formattedName)
+    }
+
     // _TDD: surname should be the last name part and be uppercase and comma separated
-        // TDD: empty
+        // _TDD: empty
+        // TDD: blank
         // TDD: all underscore
         // TDD: all upperscore
     // TDD: single name should be uppercase
