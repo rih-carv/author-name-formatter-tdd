@@ -2,7 +2,8 @@ package com.example.myapplication
 
 class AuthorNameFormatter {
     fun formatted(name: String) =
-        name.split(" ")
+        name.trim()
+            .split(" ")
             .reversed()
             .mapIndexed { index, namePart ->
                 if (index == 0) namePart.uppercase()

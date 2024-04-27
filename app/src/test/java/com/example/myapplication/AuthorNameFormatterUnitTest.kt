@@ -13,14 +13,14 @@ class AuthorNameFormatterUnitTest {
     }
 
     @Test
-    fun testEmptyInput() {
-        val formattedName = formatter.formatted("")
-        assertEquals("", formattedName)
+    fun testEmptyOrBlankInput() {
+        assertEquals("", formatter.formatted(""))
+        assertEquals("", formatter.formatted(" "))
     }
 
     // _TDD: surname should be the last name part and be uppercase and comma separated
         // _TDD: empty
-        // TDD: blank
+        // _TDD: blank
         // TDD: all underscore
         // TDD: all upperscore
     // TDD: single name should be uppercase
