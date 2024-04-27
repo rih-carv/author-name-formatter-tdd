@@ -7,19 +7,19 @@ class AuthorNameFormatterUnitTest {
     private val formatter = AuthorNameFormatter()
 
     @Test
-    fun testSurnameShouldBeTheLastNamePartAndBeUppercaseAndCommaSeparated() {
+    fun `test surname should be the last name part and be uppercase and comma separated`() {
         val formattedName = formatter.formatted("Ricardo Carvalho")
         assertEquals("CARVALHO, Ricardo", formattedName)
     }
 
     @Test
-    fun testEmptyOrBlankInput() {
+    fun `test empty or blank input`() {
         assertEquals("", formatter.formatted(""))
         assertEquals("", formatter.formatted(" "))
     }
 
     @Test
-    fun testSingleNameShouldBeUppercase() {
+    fun `test single name should be uppercase`() {
         val formattedName = formatter.formatted("Carvalho")
         assertEquals("CARVALHO", formattedName)
     }
