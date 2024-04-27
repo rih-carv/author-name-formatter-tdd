@@ -54,6 +54,14 @@ class AuthorNameFormatterUnitTest {
             "CARVALHO, Ricardo de",
             formatter.formatted("Ricardo De Carvalho")
         )
+        assertEquals(
+            "DOS, Ricardo",
+            formatter.formatted("Ricardo Dos")
+        )
+        assertEquals(
+            "DAS",
+            formatter.formatted("Das")
+        )
     }
 
     // _TDD: surname should be the last name part and be uppercase and comma separated
@@ -67,5 +75,5 @@ class AuthorNameFormatterUnitTest {
         // _TDD: single
         // TDD: two parts with preposition
     // _TDD: surname prepositions should be lowercase
-        // TDD: single
+        // _TDD: single
 }
