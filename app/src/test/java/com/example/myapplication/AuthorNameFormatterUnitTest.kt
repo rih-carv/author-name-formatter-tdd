@@ -8,8 +8,14 @@ class AuthorNameFormatterUnitTest {
 
     @Test
     fun `test surname should be the last name part and be uppercase and comma separated`() {
-        assertEquals("CARVALHO, Ricardo", formatter.formatted("Ricardo Carvalho"))
-        assertEquals("ANDRADE, Jeremias dos Santos", formatter.formatted("Jeremias dos Santos Andrade"))
+        assertEquals(
+            "CARVALHO, Ricardo",
+            formatter.formatted("Ricardo Carvalho")
+        )
+        assertEquals(
+            "ANDRADE, Jeremias dos Santos",
+            formatter.formatted("Jeremias dos Santos Andrade")
+        )
     }
 
     @Test
@@ -20,16 +26,26 @@ class AuthorNameFormatterUnitTest {
 
     @Test
     fun `test single name should be uppercase`() {
-        val formattedName = formatter.formatted("Carvalho")
-        assertEquals("CARVALHO", formattedName)
+        assertEquals(
+            "CARVALHO",
+            formatter.formatted("Carvalho")
+        )
+    }
+
+    @Test
+    fun `test compound surname if contains at least three parts and last is kinship`() {
+        assertEquals(
+            "CARVALHO FILHO, Ricardo",
+            formatter.formatted("Ricardo Carvalho Filho")
+        )
     }
 
     // _TDD: surname should be the last name part and be uppercase and comma separated
         // _TDD: empty
         // _TDD: blank
-        // TDD: all underscore
-        // TDD: all upperscore
+        // TDD: all lowercase
+        // TDD: all uppercase
     // _TDD: single name should be uppercase
-    // TDD: compound surname if contains at least three parts and last is kinship
+    // _TDD: compound surname if contains at least three parts and last is kinship
     // TDD: surname prepositions should be lowercase
 }
