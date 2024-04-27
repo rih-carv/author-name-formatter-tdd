@@ -37,11 +37,12 @@ class AuthorNameFormatter {
                         .joinToString(" ")
                         .takeUnless(String::isEmpty),
                     dropLast(lastNames.count())
-                        .joinToString(" ") { nameWord ->
+                        .mapIndexed { index, nameWord ->
                             nameWord.lowercase().takeIf {
-                                it in PREPOSITIONS
+                                index != 0 && it in PREPOSITIONS
                             } ?: nameWord
                         }
+                        .joinToString(" ")
                         .takeUnless(String::isEmpty)
                 )
             }

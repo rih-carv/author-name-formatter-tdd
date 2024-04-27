@@ -62,6 +62,18 @@ class AuthorNameFormatterUnitTest {
             "DAS",
             formatter.formatted("Das")
         )
+        assertEquals(
+            "FILHO, Das",
+            formatter.formatted("Das Filho")
+        )
+        assertEquals(
+            "NEVES FILHO, Das",
+            formatter.formatted("Das Neves Filho")
+        )
+        assertEquals(
+            "DE FILHO, José",
+            formatter.formatted("José de Filho")
+        )
     }
 
     // _TDD: surname should be the last name part and be uppercase and comma separated
@@ -73,7 +85,8 @@ class AuthorNameFormatterUnitTest {
     // _TDD: compound surname if contains at least three parts and last is kinship
         // _TDD: only two parts
         // _TDD: single
-        // TDD: two parts with preposition
+        // _TDD: two parts with preposition
+        // _TDD: three parts with preposition
     // _TDD: surname prepositions should be lowercase
         // _TDD: single
 }
