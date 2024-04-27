@@ -20,6 +20,7 @@ class AuthorNameFormatter {
                 var stopOnNext = false
                 val lastNames = takeLastWhile {
                     !stopOnNext.also { _ ->
+                        if (count() < 3) stopOnNext = true
                         if (it.lowercase() !in KINSHIP_NAME_PARTS) stopOnNext = true
                     }
                 }

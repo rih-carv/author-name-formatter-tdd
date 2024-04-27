@@ -38,6 +38,14 @@ class AuthorNameFormatterUnitTest {
             "CARVALHO FILHO, Ricardo",
             formatter.formatted("Ricardo Carvalho Filho")
         )
+        assertEquals(
+            "FILHO, Ricardo",
+            formatter.formatted("Ricardo Filho")
+        )
+        assertEquals(
+            "FILHO",
+            formatter.formatted("Filho")
+        )
     }
 
     // _TDD: surname should be the last name part and be uppercase and comma separated
@@ -47,5 +55,9 @@ class AuthorNameFormatterUnitTest {
         // TDD: all uppercase
     // _TDD: single name should be uppercase
     // _TDD: compound surname if contains at least three parts and last is kinship
+        // _TDD: only two parts
+        // _TDD: single
+        // TDD: two parts with preposition
     // TDD: surname prepositions should be lowercase
+        // TDD: single
 }
