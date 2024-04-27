@@ -25,6 +25,22 @@ class AuthorNameFormatterUnitTest {
     }
 
     @Test
+    fun `test lowercase, uppercase or mixed input`() {
+        assertEquals(
+            "ANDRADE, Jeremias dos Santos",
+            formatter.formatted("jeremias dos santos andrade")
+        )
+        assertEquals(
+            "ANDRADE, Jeremias dos Santos",
+            formatter.formatted("JEREMIAS DOS SANTOS ANDRADE")
+        )
+        assertEquals(
+            "ANDRADE, Jeremias dos Santos",
+            formatter.formatted("jErEmIaS DoS SanTOS anDrAde")
+        )
+    }
+
+    @Test
     fun `test single name should be uppercase`() {
         assertEquals(
             "CARVALHO",
@@ -79,8 +95,8 @@ class AuthorNameFormatterUnitTest {
     // _TDD: surname should be the last name part and be uppercase and comma separated
         // _TDD: empty
         // _TDD: blank
-        // TDD: all lowercase
-        // TDD: all uppercase
+        // _TDD: all lowercase
+        // _TDD: all uppercase
     // _TDD: single name should be uppercase
     // _TDD: compound surname if contains at least three parts and last is kinship
         // _TDD: only two parts

@@ -40,7 +40,9 @@ class AuthorNameFormatter {
                         .mapIndexed { index, nameWord ->
                             nameWord.lowercase().takeIf {
                                 index != 0 && it in PREPOSITIONS
-                            } ?: nameWord
+                            } ?: nameWord.lowercase().replaceFirstChar {
+                                it.titlecase()
+                            }
                         }
                         .joinToString(" ")
                         .takeUnless(String::isEmpty)
