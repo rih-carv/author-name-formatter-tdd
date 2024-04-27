@@ -48,6 +48,14 @@ class AuthorNameFormatterUnitTest {
         )
     }
 
+    @Test
+    fun `test surname prepositions should be lowercase`() {
+        assertEquals(
+            "CARVALHO, Ricardo de",
+            formatter.formatted("Ricardo De Carvalho")
+        )
+    }
+
     // _TDD: surname should be the last name part and be uppercase and comma separated
         // _TDD: empty
         // _TDD: blank
@@ -58,6 +66,6 @@ class AuthorNameFormatterUnitTest {
         // _TDD: only two parts
         // _TDD: single
         // TDD: two parts with preposition
-    // TDD: surname prepositions should be lowercase
+    // _TDD: surname prepositions should be lowercase
         // TDD: single
 }
