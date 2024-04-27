@@ -8,8 +8,8 @@ class AuthorNameFormatterUnitTest {
 
     @Test
     fun `test surname should be the last name part and be uppercase and comma separated`() {
-        val formattedName = formatter.formatted("Ricardo Carvalho")
-        assertEquals("CARVALHO, Ricardo", formattedName)
+        assertEquals("CARVALHO, Ricardo", formatter.formatted("Ricardo Carvalho"))
+        assertEquals("ANDRADE, Jeremias dos Santos", formatter.formatted("Jeremias dos Santos Andrade"))
     }
 
     @Test
