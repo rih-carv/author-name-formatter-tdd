@@ -22,16 +22,17 @@ class AuthorNameFormatter {
     }
 
     fun formatted(name: String) =
-        name.trim()
-            .split(" ")
-            .run {
-                val lastNames = takeLast(lastNameAmountConsideringKinshipLike())
-                listOfNotNull(
-                    lastNames.rejoinNameWords()?.uppercase(),
-                    dropLast(lastNames.count()).ensureCorrectCases().rejoinNameWords()
-                )
-            }
+        name.split(" ")
+            .formattedNameParts()
             .joinToString()
+
+    private fun List<String>.formattedNameParts() =
+        takeLast(lastNameAmountConsideringKinshipLike()).let { lastNames ->
+            listOfNotNull(
+                lastNames.rejoinNameWords()?.uppercase(),
+                dropLast(lastNames.count()).ensureCorrectCases().rejoinNameWords()
+            )
+        }
 
     private fun List<String>.lastNameAmountConsideringKinshipLike() =
         if (count() < 3) 1
