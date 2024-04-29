@@ -27,14 +27,8 @@ class AuthorNameFormatter {
             .run {
                 val lastNames = takeLast(lastNameAmountConsideringKinshipLike())
                 listOfNotNull(
-                    lastNames
-                        .joinToString(" ")
-                        .takeUnless(String::isEmpty)
-                        ?.uppercase(),
-                    dropLast(lastNames.count())
-                        .ensureCorrectCases()
-                        .joinToString(" ")
-                        .takeUnless(String::isEmpty)
+                    lastNames.rejoinNameWords()?.uppercase(),
+                    dropLast(lastNames.count()).ensureCorrectCases().rejoinNameWords()
                 )
             }
             .joinToString()
@@ -45,6 +39,8 @@ class AuthorNameFormatter {
             if (nameWord.lowercase() in KINSHIP_LIKE) amount + 1
             else return amount
         }
+
+    private fun List<String>.rejoinNameWords() = joinToString(" ").takeUnless(String::isEmpty)
 
     private fun List<String>.ensureCorrectCases(): List<String> = mapIndexed { index, nameWord ->
         nameWord.lowercase().takeIf {
