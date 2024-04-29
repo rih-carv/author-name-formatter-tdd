@@ -29,23 +29,15 @@ class AuthorNameFormatter {
                 listOfNotNull(
                     lastNames
                         .joinToString(" ")
-                        .takeUnless(String::isEmpty),
+                        .takeUnless(String::isEmpty)
+                        ?.uppercase(),
                     dropLast(lastNames.count())
-                        .mapIndexed { index, nameWord ->
-                            nameWord.lowercase().takeIf {
-                                index != 0 && it in PREPOSITIONS
-                            } ?: nameWord.lowercase().replaceFirstChar {
-                                it.titlecase()
-                            }
-                        }
+                        .ensureCorrectCases()
                         .joinToString(" ")
                         .takeUnless(String::isEmpty)
                 )
             }
-            .mapIndexed { index, namePart ->
-                if (index == 0) namePart.uppercase()
-                else namePart
-            }.joinToString()
+            .joinToString()
 
     private fun List<String>.lastNameAmountConsideringKinshipLike() =
         if (count() < 3) 1
@@ -53,4 +45,12 @@ class AuthorNameFormatter {
             if (nameWord.lowercase() in KINSHIP_LIKE) amount + 1
             else return amount
         }
+
+    private fun List<String>.ensureCorrectCases(): List<String> = mapIndexed { index, nameWord ->
+        nameWord.lowercase().takeIf {
+            index != 0 && it in PREPOSITIONS
+        } ?: nameWord.lowercase().replaceFirstChar {
+            it.titlecase()
+        }
+    }
 }
