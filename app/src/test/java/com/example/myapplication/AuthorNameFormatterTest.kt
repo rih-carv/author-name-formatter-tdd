@@ -21,8 +21,16 @@ class AuthorNameFormatterTest {
         assertEquals("CARVALHO", formattedName)
     }
 
+    @Test
+    fun `test empty input should result in empty`() {
+        val formatter = AuthorNameFormatter()
+        val formattedName = formatter.format("")
+        assertEquals("", formattedName)
+    }
+
     // _TDD: surname should be uppercase and comma separated from name
         // TDD: remover reversed
+        // _TDD: empty
     // _TDD: single word should be uppercase
     // TDD: kinship like should be compound when at least three words
     // TDD: name remainder words should be capitalized
