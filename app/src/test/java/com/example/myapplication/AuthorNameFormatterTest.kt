@@ -4,28 +4,31 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class AuthorNameFormatterTest {
+    private val formatter = AuthorNameFormatter()
+
     @Test
     fun `test surname should be uppercase and comma separated from name`() {
-        val formatter = AuthorNameFormatter()
-        val formattedName = formatter.format("Ricardo Carvalho")
-        assertEquals("CARVALHO, Ricardo", formattedName)
-
-        val formattedName2 = formatter.format("José Carvalho")
-        assertEquals("CARVALHO, José", formattedName2)
+        assertEquals(
+            "CARVALHO, Ricardo",
+            formatter.format("Ricardo Carvalho")
+        )
+        assertEquals(
+            "CARVALHO, José",
+            formatter.format("José Carvalho")
+        )
     }
 
     @Test
     fun `test single word should be uppercase`() {
-        val formatter = AuthorNameFormatter()
-        val formattedName = formatter.format("Carvalho")
-        assertEquals("CARVALHO", formattedName)
+        assertEquals(
+            "CARVALHO",
+            formatter.format("Carvalho")
+        )
     }
 
     @Test
     fun `test empty input should result in empty`() {
-        val formatter = AuthorNameFormatter()
-        val formattedName = formatter.format("")
-        assertEquals("", formattedName)
+        assertEquals("", formatter.format(""))
     }
 
     // _TDD: surname should be uppercase and comma separated from name
